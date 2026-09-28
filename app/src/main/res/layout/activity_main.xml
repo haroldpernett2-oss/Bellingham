@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RESOLUCIÓN DE PANTALLA"
+            android:text="MODO JUEGO (POR JUEGO)"
             android:textColor="@color/gold_dark"
             android:textStyle="bold"
             android:textSize="14sp"
@@ -62,10 +62,103 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Baja la resolución del sistema para que los juegos rindan mejor que en su ajuste más bajo."
+            android:text="Paquete del juego. Free Fire: com.dts.freefireth · Free Fire MAX: com.dts.freefiremax. Requiere Android 12 o superior."
             android:textColor="@color/gray_text"
             android:textSize="12sp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etPackage"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="com.dts.freefireth"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:background="@color/off_white"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnGameMedio"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Rendimiento medio (70% · 60 FPS)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnGameMax"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Rendimiento máximo (50% · 30 FPS)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnGameReset"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Quitar ajuste del juego"
+            android:textColor="@color/white"
+            android:background="@drawable/button_gold"
+            android:layout_marginBottom="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIMITADOR DE FPS (PANTALLA)"
+            android:textColor="@color/gold_dark"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnFps30"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="30 Hz"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnFps60"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="60 Hz"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnFps90"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="90 Hz"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnFpsReset"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Automático (restaurar)"
+            android:textColor="@color/white"
+            android:background="@drawable/button_gold"
+            android:layout_marginBottom="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESOLUCIÓN DE PANTALLA"
+            android:textColor="@color/gold_dark"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
 
         <Button
             android:id="@+id/btnOriginal"
@@ -106,11 +199,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MEMORIA RAM"
+            android:text="EXTRAS"
             android:textColor="@color/gold_dark"
             android:textStyle="bold"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnAnimOff"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Quitar animaciones del sistema"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnAnimOn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Restaurar animaciones"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/btnRam"
