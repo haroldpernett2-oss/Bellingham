@@ -53,19 +53,47 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="MODO RÁPIDO"
+            android:textColor="@color/gold_dark"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnModoGamer"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="⚡ Modo Gamer (todo en uno)"
+            android:textColor="@color/white"
+            android:background="@drawable/button_gold"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnModoNormal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Modo Normal (restaurar todo)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="MODO JUEGO (POR JUEGO)"
             android:textColor="@color/gold_dark"
             android:textStyle="bold"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
 
-        <TextView
+        <Button
+            android:id="@+id/btnElegirJuego"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Paquete del juego. Free Fire: com.dts.freefireth · Free Fire MAX: com.dts.freefiremax. Requiere Android 12 o superior."
-            android:textColor="@color/gray_text"
-            android:textSize="12sp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_height="50dp"
+            android:text="Elegir juego de mi lista de apps"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/etPackage"
@@ -93,6 +121,15 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Rendimiento máximo (50% · 30 FPS)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnCompilar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Optimizar juego (compilar)"
             android:textColor="@color/gold_dark"
             android:background="@drawable/button_outline"
             android:layout_marginBottom="10dp"/>
@@ -194,6 +231,23 @@
             android:text="Ultra baja (480x854)"
             android:textColor="@color/gold_dark"
             android:background="@drawable/button_outline"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/dpiLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Densidad (DPI): auto"
+            android:textColor="@color/gray_text"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"/>
+
+        <SeekBar
+            android:id="@+id/dpiSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="320"
+            android:progress="160"
             android:layout_marginBottom="28dp"/>
 
         <TextView
@@ -204,6 +258,24 @@
             android:textStyle="bold"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnOverlayStart"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Activar overlay de FPS/RAM en pantalla"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnOverlayStop"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Detener overlay"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/btnAnimOff"
