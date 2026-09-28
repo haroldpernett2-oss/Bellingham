@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#FFFFFF</color>
-    <color name="off_white">#FAFAFA</color>
-    <color name="gold">#D4AF37</color>
-    <color name="gold_dark">#B8860B</color>
-    <color name="black">#1A1A1A</color>
-    <color name="gray_text">#555555</color>
+    <color name="bg_black">#0A0A0A</color>
+    <color name="card_bg">#1C1C1E</color>
+    <color name="button_bg">#2C2C2E</color>
+    <color name="button_bg_light">#3A3A3C</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_silver">#D1D1D6</color>
+    <color name="text_gray">#8E8E93</color>
+    <color name="crown_silver">#C7C7CC</color>
 </resources>
