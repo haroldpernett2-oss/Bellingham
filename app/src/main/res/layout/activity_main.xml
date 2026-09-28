@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="BELLINGHAM"
+            android:textColor="@color/gold_dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Optimización de rendimiento"
+            android:textColor="@color/gray_text"
+            android:textSize="14sp"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shizuku no conectado"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="@color/off_white"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/connectButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Conectar Shizuku"
+            android:textColor="@color/white"
+            android:background="@drawable/button_gold"
+            android:layout_marginBottom="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESOLUCIÓN DE PANTALLA"
+            android:textColor="@color/gold_dark"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Baja la resolución del sistema para que los juegos rindan mejor que en su ajuste más bajo."
+            android:textColor="@color/gray_text"
+            android:textSize="12sp"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnOriginal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Original (restaurar)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnMedia"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Media (720x1280)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnBaja"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Baja (540x960)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnUltraBaja"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Ultra baja (480x854)"
+            android:textColor="@color/gold_dark"
+            android:background="@drawable/button_outline"
+            android:layout_marginBottom="28dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEMORIA RAM"
+            android:textColor="@color/gold_dark"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnRam"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Cerrar apps en segundo plano"
+            android:textColor="@color/white"
+            android:background="@drawable/button_gold"
+            android:layout_marginBottom="40dp"/>
+
+    </LinearLayout>
+</ScrollView>
