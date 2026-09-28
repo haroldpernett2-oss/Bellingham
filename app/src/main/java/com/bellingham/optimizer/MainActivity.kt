@@ -47,15 +47,61 @@ class MainActivity : AppCompatActivity() {
         Shizuku.addRequestPermissionResultListener(permissionListener)
 
         binding.connectButton.setOnClickListener { checkAndBind() }
+
+        // Resolución
         binding.btnOriginal.setOnClickListener { runCommand("wm size reset") }
         binding.btnMedia.setOnClickListener { runCommand("wm size 720x1280") }
         binding.btnBaja.setOnClickListener { runCommand("wm size 540x960") }
         binding.btnUltraBaja.setOnClickListener { runCommand("wm size 480x854") }
+
+        // Limitador de FPS (tasa de refresco)
+        binding.btnFps30.setOnClickListener { setRefresh("30.0") }
+        binding.btnFps60.setOnClickListener { setRefresh("60.0") }
+        binding.btnFps90.setOnClickListener { setRefresh("90.0") }
+        binding.btnFpsReset.setOnClickListener {
+            runCommand("settings delete system min_refresh_rate; settings delete system peak_refresh_rate")
+        }
+
+        // Modo Juego por app
+        binding.btnGameMedio.setOnClickListener { gameMode("0.7", "60") }
+        binding.btnGameMax.setOnClickListener { gameMode("0.5", "30") }
+        binding.btnGameReset.setOnClickListener {
+            val pkg = getPackageName2() ?: return@setOnClickListener
+            runCommand("cmd game reset $pkg")
+        }
+
+        // Animaciones
+        binding.btnAnimOff.setOnClickListener {
+            runCommand("settings put global window_animation_scale 0; settings put global transition_animation_scale 0; settings put global animator_duration_scale 0")
+        }
+        binding.btnAnimOn.setOnClickListener {
+            runCommand("settings put global window_animation_scale 1; settings put global transition_animation_scale 1; settings put global animator_duration_scale 1")
+        }
+
+        // RAM
         binding.btnRam.setOnClickListener {
             runCommand("for p in \$(pm list packages -3 | sed 's/package://'); do am force-stop \$p; done")
         }
 
         checkAndBind()
+    }
+
+    private fun setRefresh(hz: String) {
+        runCommand("settings put system min_refresh_rate $hz; settings put system peak_refresh_rate $hz")
+    }
+
+    private fun gameMode(downscale: String, fps: String) {
+        val pkg = getPackageName2() ?: return
+        runCommand("cmd game mode performance $pkg; cmd game set --mode performance --downscale $downscale --fps $fps $pkg")
+    }
+
+    private fun getPackageName2(): String? {
+        val pkg = binding.etPackage.text.toString().trim()
+        if (pkg.isEmpty() || !Regex("^[A-Za-z0-9._]+$").matches(pkg)) {
+            Toast.makeText(this, "Paquete inválido", Toast.LENGTH_SHORT).show()
+            return null
+        }
+        return pkg
     }
 
     private fun checkAndBind() {
@@ -88,13 +134,14 @@ class MainActivity : AppCompatActivity() {
             return
         }
         Thread {
-            try {
-                service.execCommand(cmd)
+            val result = try {
+                service.execCommand(cmd).trim()
             } catch (e: Exception) {
-                // ignore
+                "Error: ${e.message}"
             }
             runOnUiThread {
-                Toast.makeText(this, "Listo ✅", Toast.LENGTH_SHORT).show()
+                val msg = if (result.isEmpty()) "Listo ✅" else result.take(150)
+                Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
             }
         }.start()
     }
