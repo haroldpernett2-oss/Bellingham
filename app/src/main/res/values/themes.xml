@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Bellingham" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/gold</item>
-        <item name="colorPrimaryDark">@color/gold_dark</item>
-        <item name="colorAccent">@color/gold</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+    <style name="Theme.Bellingham" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/button_bg_light</item>
+        <item name="colorPrimaryDark">@color/bg_black</item>
+        <item name="colorAccent">@color/text_silver</item>
+        <item name="android:windowBackground">@color/bg_black</item>
+        <item name="android:statusBarColor">@color/bg_black</item>
     </style>
 </resources>
