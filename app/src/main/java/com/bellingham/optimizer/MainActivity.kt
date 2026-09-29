@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
 import android.provider.Settings
+import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -52,16 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.connectButton.setOnClickListener { checkAndBind() }
 
-        // Modo rápido
         binding.btnModoGamer.setOnClickListener { modoGamer() }
         binding.btnModoNormal.setOnClickListener { modoNormal() }
 
-        // Elegir juego
         binding.btnElegirJuego.setOnClickListener { showAppPicker() }
-
-        // Modo Juego por app
-        binding.btnGameMedio.setOnClickListener { gameMode("0.7", "60") }
-        binding.btnGameMax.setOnClickListener { gameMode("0.5", "30") }
         binding.btnCompilar.setOnClickListener {
             val pkg = getPackageName2() ?: return@setOnClickListener
             runCommand("cmd package compile -m speed-profile $pkg")
@@ -71,67 +66,158 @@ class MainActivity : AppCompatActivity() {
             runCommand("cmd game reset $pkg")
         }
 
-        // Limitador de FPS (tasa de refresco)
-        binding.btnFps30.setOnClickListener { setRefresh("30.0") }
-        binding.btnFps60.setOnClickListener { setRefresh("60.0") }
-        binding.btnFps90.setOnClickListener { setRefresh("90.0") }
-        binding.btnFpsReset.setOnClickListener {
-            runCommand("settings delete system min_refresh_rate; settings delete system peak_refresh_rate")
-        }
-
-        // Resolución
-        binding.btnOriginal.setOnClickListener { runCommand("wm size reset") }
-        binding.btnMedia.setOnClickListener { runCommand("wm size 720x1280") }
-        binding.btnBaja.setOnClickListener { runCommand("wm size 540x960") }
-        binding.btnUltraBaja.setOnClickListener { runCommand("wm size 480x854") }
-
-        // DPI slider (rango real 160 a 480)
-        val currentDpi = resources.displayMetrics.densityDpi
-        binding.dpiSlider.progress = (currentDpi - 160).coerceIn(0, 320)
-        binding.dpiLabel.text = "Densidad (DPI): $currentDpi"
-        binding.dpiSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.dpiLabel.text = "Densidad (DPI): ${160 + progress}"
-            }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                val dpi = 160 + (seekBar?.progress ?: 0)
-                runCommand("wm density $dpi")
-            }
-        })
-
-        // Overlay
+        binding.btnOriginal?.let { }
         binding.btnOverlayStart.setOnClickListener { startOverlay() }
-        binding.btnOverlayStop.setOnClickListener {
-            stopService(Intent(this, OverlayService::class.java))
-        }
+        binding.btnOverlayStop.setOnClickListener { stopService(Intent(this, OverlayService::class.java)) }
 
-        // Animaciones
         binding.btnAnimOff.setOnClickListener {
             runCommand("settings put global window_animation_scale 0; settings put global transition_animation_scale 0; settings put global animator_duration_scale 0")
         }
         binding.btnAnimOn.setOnClickListener {
             runCommand("settings put global window_animation_scale 1; settings put global transition_animation_scale 1; settings put global animator_duration_scale 1")
         }
-
-        // RAM
         binding.btnRam.setOnClickListener {
             runCommand("for p in \$(pm list packages -3 | sed 's/package://'); do am force-stop \$p; done")
         }
 
+        // Perfiles
+        binding.btnSaveProfile.setOnClickListener { saveCurrentProfile() }
+        binding.btnApplyProfile.setOnClickListener { applySelectedProfile() }
+        binding.btnDeleteProfile.setOnClickListener { deleteSelectedProfile() }
+
+        // Auto-activación
+        binding.btnAutoStart.setOnClickListener { startAutoActivation() }
+        binding.btnAutoStop.setOnClickListener { stopService(Intent(this, GameWatcherService::class.java)) }
+
+        // Burbuja WhatsApp
+        binding.btnBubbleStart.setOnClickListener { startBubble() }
+        binding.btnBubbleStop.setOnClickListener { stopService(Intent(this, WhatsAppBubbleService::class.java)) }
+
+        refreshProfileSpinners()
         checkAndBind()
     }
 
+    // ---------- MODO RÁPIDO ----------
     private fun modoGamer() {
         runCommand("wm size 540x960; settings put system min_refresh_rate 60.0; settings put system peak_refresh_rate 60.0; settings put global window_animation_scale 0; settings put global transition_animation_scale 0; settings put global animator_duration_scale 0; for p in \$(pm list packages -3 | sed 's/package://'); do am force-stop \$p; done")
-        Toast.makeText(this, "Modo Gamer activado ⚡", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Modo Gamer activado", Toast.LENGTH_SHORT).show()
     }
 
     private fun modoNormal() {
-        runCommand("wm size reset; settings delete system min_refresh_rate; settings delete system peak_refresh_rate; settings put global window_animation_scale 1; settings put global transition_animation_scale 1; settings put global animator_duration_scale 1")
+        runCommand(ProfileStorage.NORMAL_COMMAND)
         Toast.makeText(this, "Modo Normal restaurado", Toast.LENGTH_SHORT).show()
     }
 
+    // ---------- PERFILES ----------
+    private fun saveCurrentProfile() {
+        val name = binding.etProfileName.text.toString().trim()
+        if (name.isEmpty()) {
+            Toast.makeText(this, "Ponle un nombre al perfil", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val resolution = when (binding.radioGroupResolution.checkedRadioButtonId) {
+            binding.radioRes720.id -> "720x1280"
+            binding.radioRes540.id -> "540x960"
+            binding.radioRes480.id -> "480x854"
+            else -> "original"
+        }
+
+        val refresh = when (binding.radioGroupRefresh.checkedRadioButtonId) {
+            binding.radioRefresh30.id -> "30"
+            binding.radioRefresh60.id -> "60"
+            binding.radioRefresh90.id -> "90"
+            else -> "auto"
+        }
+
+        val useGameMode = binding.checkGameMode.isChecked
+        val downscale: String
+        val fps: String
+        if (useGameMode) {
+            if (binding.radioGroupGameMode.checkedRadioButtonId == binding.radioGameMax.id) {
+                downscale = "0.5"; fps = "30"
+            } else {
+                downscale = "0.7"; fps = "60"
+            }
+        } else {
+            downscale = "1.0"; fps = "60"
+        }
+
+        val profile = GameProfile(
+            name = name,
+            resolution = resolution,
+            refreshHz = refresh,
+            downscale = downscale,
+            fps = fps,
+            animOff = binding.checkAnimOffProfile.isChecked,
+            cleanRam = binding.checkRamProfile.isChecked
+        )
+        ProfileStorage.save(this, profile)
+        Toast.makeText(this, "Perfil \"$name\" guardado", Toast.LENGTH_SHORT).show()
+        refreshProfileSpinners()
+    }
+
+    private fun refreshProfileSpinners() {
+        val names = ProfileStorage.getAll(this).map { it.name }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, names)
+        binding.spinnerProfiles.adapter = adapter
+
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, names)
+        binding.spinnerAutoProfile.adapter = adapter2
+    }
+
+    private fun applySelectedProfile() {
+        val name = binding.spinnerProfiles.selectedItem as? String ?: run {
+            Toast.makeText(this, "No hay perfiles guardados", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val profile = ProfileStorage.getAll(this).find { it.name == name } ?: return
+        runCommand(ProfileStorage.buildApplyCommand(profile))
+        val pkg = binding.etPackage.text.toString().trim()
+        if (pkg.isNotEmpty() && profile.downscale != "1.0") {
+            runCommand(ProfileStorage.buildGameModeCommand(pkg, profile))
+        }
+        Toast.makeText(this, "Perfil \"$name\" aplicado", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun deleteSelectedProfile() {
+        val name = binding.spinnerProfiles.selectedItem as? String ?: return
+        ProfileStorage.delete(this, name)
+        Toast.makeText(this, "Perfil \"$name\" eliminado", Toast.LENGTH_SHORT).show()
+        refreshProfileSpinners()
+    }
+
+    // ---------- AUTO-ACTIVACIÓN ----------
+    private fun startAutoActivation() {
+        val pkg = getPackageName2() ?: return
+        val profileName = binding.spinnerAutoProfile.selectedItem as? String
+        if (profileName == null) {
+            Toast.makeText(this, "Crea y elige un perfil primero", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val intent = Intent(this, GameWatcherService::class.java)
+        intent.putExtra("package", pkg)
+        intent.putExtra("profile", profileName)
+        startService(intent)
+        Toast.makeText(this, "Auto-activación encendida para $pkg", Toast.LENGTH_SHORT).show()
+    }
+
+    // ---------- BURBUJA WHATSAPP ----------
+    private fun startBubble() {
+        if (!Settings.canDrawOverlays(this)) {
+            Toast.makeText(this, "Dale permiso de superposición y vuelve a tocar", Toast.LENGTH_LONG).show()
+            startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")))
+            return
+        }
+        if (packageManager.getLaunchIntentForPackage("com.whatsapp") == null) {
+            Toast.makeText(this, "No encontré WhatsApp instalado", Toast.LENGTH_SHORT).show()
+            return
+        }
+        startService(Intent(this, WhatsAppBubbleService::class.java))
+        Toast.makeText(this, "Burbuja activa, minimiza y abre tu juego", Toast.LENGTH_LONG).show()
+    }
+
+    // ---------- OTROS ----------
     private fun showAppPicker() {
         val pm = packageManager
         val apps = pm.getInstalledApplications(0)
@@ -143,20 +229,14 @@ class MainActivity : AppCompatActivity() {
 
         AlertDialog.Builder(this)
             .setTitle("Elige un juego")
-            .setItems(labels) { _, i ->
-                binding.etPackage.setText(packages[i])
-            }
+            .setItems(labels) { _, i -> binding.etPackage.setText(packages[i]) }
             .show()
     }
 
     private fun startOverlay() {
         if (!Settings.canDrawOverlays(this)) {
             Toast.makeText(this, "Dale permiso de superposición y vuelve a tocar", Toast.LENGTH_LONG).show()
-            val intent = Intent(
-                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:$packageName")
-            )
-            startActivity(intent)
+            startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")))
             return
         }
         val pkg = binding.etPackage.text.toString().trim()
@@ -164,15 +244,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("package", pkg)
         startService(intent)
         Toast.makeText(this, "Overlay activo, minimiza y abre tu juego", Toast.LENGTH_LONG).show()
-    }
-
-    private fun setRefresh(hz: String) {
-        runCommand("settings put system min_refresh_rate $hz; settings put system peak_refresh_rate $hz")
-    }
-
-    private fun gameMode(downscale: String, fps: String) {
-        val pkg = getPackageName2() ?: return
-        runCommand("cmd game mode performance $pkg; cmd game set --mode performance --downscale $downscale --fps $fps $pkg")
     }
 
     private fun getPackageName2(): String? {
@@ -197,13 +268,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindUserService() {
-        val args = Shizuku.UserServiceArgs(
-            ComponentName(packageName, UserService::class.java.name)
-        )
-            .daemon(false)
-            .processNameSuffix("service")
-            .debuggable(false)
-            .version(1)
+        val args = Shizuku.UserServiceArgs(ComponentName(packageName, UserService::class.java.name))
+            .daemon(false).processNameSuffix("service").debuggable(false).version(1)
         Shizuku.bindUserService(args, connection)
     }
 
@@ -214,11 +280,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         Thread {
-            val result = try {
-                service.execCommand(cmd).trim()
-            } catch (e: Exception) {
-                "Error: ${e.message}"
-            }
+            val result = try { service.execCommand(cmd).trim() } catch (e: Exception) { "Error: ${e.message}" }
             runOnUiThread {
                 val msg = if (result.isEmpty()) "Listo ✅" else result.take(150)
                 Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
