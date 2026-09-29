@@ -2,43 +2,45 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/bg_black">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="BELLINGHAM"
-            android:textColor="@color/gold_dark"
-            android:textSize="30sp"
+            android:text="♛"
+            android:textColor="@color/crown_silver"
+            android:textSize="40sp"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="VICTORY HARD"
+            android:textColor="@color/text_white"
+            android:textSize="26sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Optimización de rendimiento"
-            android:textColor="@color/gray_text"
-            android:textSize="14sp"
-            android:layout_marginBottom="24dp"/>
+            android:letterSpacing="0.05"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/statusText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Shizuku no conectado"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textColor="@color/text_silver"
+            android:textSize="13sp"
             android:gravity="center"
             android:padding="12dp"
-            android:background="@color/off_white"
+            android:background="@drawable/card_section"
             android:layout_marginBottom="12dp"/>
 
         <Button
@@ -46,263 +48,402 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Conectar Shizuku"
-            android:textColor="@color/white"
+            android:textColor="@color/text_white"
             android:background="@drawable/button_gold"
-            android:layout_marginBottom="28dp"/>
+            android:layout_marginBottom="20dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MODO RÁPIDO"
-            android:textColor="@color/gold_dark"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/btnModoGamer"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="⚡ Modo Gamer (todo en uno)"
-            android:textColor="@color/white"
-            android:background="@drawable/button_gold"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnModoNormal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Modo Normal (restaurar todo)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="28dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MODO JUEGO (POR JUEGO)"
-            android:textColor="@color/gold_dark"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/btnElegirJuego"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Elegir juego de mi lista de apps"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <EditText
-            android:id="@+id/etPackage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="com.dts.freefireth"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:padding="12dp"
-            android:singleLine="true"
-            android:background="@color/off_white"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnGameMedio"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Rendimiento medio (70% · 60 FPS)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnGameMax"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Rendimiento máximo (50% · 30 FPS)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnCompilar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Optimizar juego (compilar)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnGameReset"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Quitar ajuste del juego"
-            android:textColor="@color/white"
-            android:background="@drawable/button_gold"
-            android:layout_marginBottom="28dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LIMITADOR DE FPS (PANTALLA)"
-            android:textColor="@color/gold_dark"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/btnFps30"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="30 Hz"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnFps60"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="60 Hz"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnFps90"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="90 Hz"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnFpsReset"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Automático (restaurar)"
-            android:textColor="@color/white"
-            android:background="@drawable/button_gold"
-            android:layout_marginBottom="28dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RESOLUCIÓN DE PANTALLA"
-            android:textColor="@color/gold_dark"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/btnOriginal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Original (restaurar)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnMedia"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Media (720x1280)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnBaja"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Baja (540x960)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnUltraBaja"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Ultra baja (480x854)"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:id="@+id/dpiLabel"
+        <!-- SECCIÓN: MODO RÁPIDO -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Densidad (DPI): auto"
-            android:textColor="@color/gray_text"
-            android:textSize="12sp"
-            android:layout_marginBottom="4dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/card_section"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
 
-        <SeekBar
-            android:id="@+id/dpiSlider"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MODO RÁPIDO"
+                android:textColor="@color/text_gray"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnModoGamer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Modo Gamer (todo en uno)"
+                android:textColor="@color/text_white"
+                android:background="@drawable/button_gold"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnModoNormal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Modo Normal (restaurar todo)"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"/>
+        </LinearLayout>
+
+        <!-- SECCIÓN: PERFILES GUARDADOS -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="320"
-            android:progress="160"
-            android:layout_marginBottom="28dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/card_section"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PERFILES GUARDADOS"
+                android:textColor="@color/text_gray"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/etProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Nombre del perfil (ej: Mi Free Fire)"
+                android:textColorHint="@color/text_gray"
+                android:textColor="@color/text_white"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resolución"
+                android:textColor="@color/text_silver"
+                android:textSize="12sp"/>
+            <RadioGroup
+                android:id="@+id/radioGroupResolution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <RadioButton android:id="@+id/radioResOriginal" android:text="Original" android:textColor="@color/text_silver" android:checked="true"/>
+                <RadioButton android:id="@+id/radioRes720" android:text="720p" android:textColor="@color/text_silver"/>
+                <RadioButton android:id="@+id/radioRes540" android:text="540p" android:textColor="@color/text_silver"/>
+                <RadioButton android:id="@+id/radioRes480" android:text="480p" android:textColor="@color/text_silver"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tasa de refresco"
+                android:textColor="@color/text_silver"
+                android:textSize="12sp"/>
+            <RadioGroup
+                android:id="@+id/radioGroupRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <RadioButton android:id="@+id/radioRefreshAuto" android:text="Auto" android:textColor="@color/text_silver" android:checked="true"/>
+                <RadioButton android:id="@+id/radioRefresh30" android:text="30Hz" android:textColor="@color/text_silver"/>
+                <RadioButton android:id="@+id/radioRefresh60" android:text="60Hz" android:textColor="@color/text_silver"/>
+                <RadioButton android:id="@+id/radioRefresh90" android:text="90Hz" android:textColor="@color/text_silver"/>
+            </RadioGroup>
+
+            <CheckBox
+                android:id="@+id/checkGameMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aplicar Modo Juego (downscale)"
+                android:textColor="@color/text_silver"
+                android:layout_marginBottom="4dp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupGameMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <RadioButton android:id="@+id/radioGameMedio" android:text="Medio (70%·60fps)" android:textColor="@color/text_silver" android:checked="true"/>
+                <RadioButton android:id="@+id/radioGameMax" android:text="Máximo (50%·30fps)" android:textColor="@color/text_silver"/>
+            </RadioGroup>
+
+            <CheckBox
+                android:id="@+id/checkAnimOffProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quitar animaciones"
+                android:textColor="@color/text_silver"/>
+
+            <CheckBox
+                android:id="@+id/checkRamProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cerrar apps en segundo plano"
+                android:textColor="@color/text_silver"
+                android:layout_marginBottom="12dp"/>
+
+            <Button
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Guardar perfil"
+                android:textColor="@color/text_white"
+                android:background="@drawable/button_gold"
+                android:layout_marginBottom="12dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerProfiles"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnApplyProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="Aplicar"
+                    android:textColor="@color/text_silver"
+                    android:background="@drawable/button_outline"/>
+
+                <Button
+                    android:id="@+id/btnDeleteProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Eliminar"
+                    android:textColor="@color/text_silver"
+                    android:background="@drawable/button_outline"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SECCIÓN: JUEGO Y AUTO-ACTIVACIÓN -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EXTRAS"
-            android:textColor="@color/gold_dark"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/card_section"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
 
-        <Button
-            android:id="@+id/btnOverlayStart"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Activar overlay de FPS/RAM en pantalla"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JUEGO Y AUTO-ACTIVACIÓN"
+                android:textColor="@color/text_gray"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:id="@+id/btnOverlayStop"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Detener overlay"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/btnElegirJuego"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Elegir juego de mi lista de apps"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btnAnimOff"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Quitar animaciones del sistema"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
+            <EditText
+                android:id="@+id/etPackage"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="com.dts.freefireth"
+                android:textColor="@color/text_white"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:id="@+id/btnAnimOn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Restaurar animaciones"
-            android:textColor="@color/gold_dark"
-            android:background="@drawable/button_outline"
-            android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/btnCompilar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Optimizar juego (compilar)"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btnRam"
+            <Button
+                android:id="@+id/btnGameReset"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Quitar ajuste del juego"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil para auto-activar con el juego de arriba"
+                android:textColor="@color/text_silver"
+                android:textSize="12sp"
+                android:layout_marginBottom="6dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerAutoProfile"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAutoStart"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="Activar auto"
+                    android:textColor="@color/text_white"
+                    android:background="@drawable/button_gold"/>
+
+                <Button
+                    android:id="@+id/btnAutoStop"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Desactivar"
+                    android:textColor="@color/text_silver"
+                    android:background="@drawable/button_outline"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SECCIÓN: OVERLAY FPS -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="Cerrar apps en segundo plano"
-            android:textColor="@color/white"
-            android:background="@drawable/button_gold"
-            android:layout_marginBottom="40dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_section"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OVERLAY EN PANTALLA"
+                android:textColor="@color/text_gray"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnOverlayStart"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Activar overlay de FPS/RAM"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnOverlayStop"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Detener overlay"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"/>
+        </LinearLayout>
+
+        <!-- SECCIÓN: WHATSAPP -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_section"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WHATSAPP MIENTRAS JUEGAS"
+                android:textColor="@color/text_gray"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnBubbleStart"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Activar burbuja de WhatsApp"
+                android:textColor="@color/text_white"
+                android:background="@drawable/button_gold"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnBubbleStop"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Desactivar burbuja"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"/>
+        </LinearLayout>
+
+        <!-- SECCIÓN: EXTRAS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_section"
+            android:padding="16dp"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXTRAS"
+                android:textColor="@color/text_gray"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnAnimOff"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Quitar animaciones del sistema"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnAnimOn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Restaurar animaciones"
+                android:textColor="@color/text_silver"
+                android:background="@drawable/button_outline"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnRam"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Cerrar apps en segundo plano"
+                android:textColor="@color/text_white"
+                android:background="@drawable/button_gold"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
