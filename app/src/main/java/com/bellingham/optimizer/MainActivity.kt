@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             runCommand("cmd game reset $pkg")
         }
 
-        binding.btnOriginal?.let { }
         binding.btnOverlayStart.setOnClickListener { startOverlay() }
         binding.btnOverlayStop.setOnClickListener { stopService(Intent(this, OverlayService::class.java)) }
 
